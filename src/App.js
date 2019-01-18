@@ -1,28 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import UserContainer from './UserContainer'
 
 class App extends Component {
+
+  componentDidMount() {
+    fetch('https://comicvine.gamespot.com/api/characters/?api_key=599175bf3806c80d60d4caf424cf74ed228c92f1&sort=steve', {
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+      })
+      .then(r => r.json())
+      .then(data => console.log(data))
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <UserContainer />
     );
   }
+  
 }
 
 export default App;
