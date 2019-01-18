@@ -2,9 +2,9 @@ import React from 'react'
 
 const Comic = props => {
   return (
-    <div> Hi </div>
+    <div></div>
   )
-  
+
 }
 
 export default Comic

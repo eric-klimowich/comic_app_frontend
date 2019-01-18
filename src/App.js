@@ -1,26 +1,51 @@
 import React, { Component } from 'react';
 import './App.css';
 import UserContainer from './UserContainer'
+import LogIn from './LogIn'
 
 class App extends Component {
 
+  state = {
+    users: [],
+    // characters: [],
+    // books: [],
+    // comics: [],
+    // likes: [],
+  }
+
   componentDidMount() {
-    fetch('https://comicvine.gamespot.com/api/characters/?api_key=599175bf3806c80d60d4caf424cf74ed228c92f1&sort=steve', {
-      mode: 'no-cors',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-      })
+    fetch('http://localhost:3000/api/v1/users')
       .then(r => r.json())
-      .then(data => console.log(data))
+      .then(users => this.setState({users}))
+
+    // fetch('http://localhost:3000/api/v1/characters')
+    //   .then(r => r.json())
+    //   .then(characters => this.setState({characters}))
+    //
+    // fetch('http://localhost:3000/api/v1/books')
+    //   .then(r => r.json())
+    //   .then(books => this.setState({books}))
+    //
+    // fetch('http://localhost:3000/api/v1/comics')
+    //   .then(r => r.json())
+    //   .then(comics => this.setState({comics}))
+    //
+    // fetch('http://localhost:3000/api/v1/likes')
+    //   .then(r => r.json())
+    //   .then(likes => this.setState({likes}))
+
   }
 
   render() {
+    // console.log('In App: ', this.state)
     return (
-      <UserContainer />
+      <div>
+      <UserContainer users={this.state.users} />
+      <LogIn />
+      </div>
     );
   }
-  
+
 }
 
 export default App;
