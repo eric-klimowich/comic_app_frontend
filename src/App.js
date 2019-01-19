@@ -7,41 +7,51 @@ class App extends Component {
 
   state = {
     users: [],
-    // characters: [],
-    // books: [],
-    // comics: [],
-    // likes: [],
   }
 
   componentDidMount() {
     fetch('http://localhost:3000/api/v1/users')
       .then(r => r.json())
       .then(users => this.setState({users}))
+  }
 
-    // fetch('http://localhost:3000/api/v1/characters')
-    //   .then(r => r.json())
-    //   .then(characters => this.setState({characters}))
-    //
-    // fetch('http://localhost:3000/api/v1/books')
-    //   .then(r => r.json())
-    //   .then(books => this.setState({books}))
-    //
-    // fetch('http://localhost:3000/api/v1/comics')
-    //   .then(r => r.json())
-    //   .then(comics => this.setState({comics}))
-    //
-    // fetch('http://localhost:3000/api/v1/likes')
-    //   .then(r => r.json())
-    //   .then(likes => this.setState({likes}))
+  handleSubmit = (event, newUser) => {
+    event.preventDefault()
+    console.log(newUser)
+    fetch('http://localhost:3000/api/v1/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accetp: 'application/json'
+      },
+      body: JSON.stringify({
+        first_name: newUser.firstName,
+        last_name: newUser.lastName,
+        fav_char: newUser.favChar,
+        fav_team: newUser.favTeam
+      })
+    })
+      .then(r => r.json())
+      .then(addedUser => {
+        // console.log(addedUser)
+        this.setState({
+          users: [...this.state.users, addedUser]
+        }, () => console.log(this.state.users))
+      })
 
   }
 
   render() {
-    // console.log('In App: ', this.state)
+    console.log('In App: ', this.state)
     return (
       <div>
-      <UserContainer users={this.state.users} />
-      <LogIn />
+        <UserContainer
+          users={this.state.users}
+        />
+        <LogIn
+          users={this.state.users}
+          handleSubmit={this.handleSubmit}
+        />
       </div>
     );
   }

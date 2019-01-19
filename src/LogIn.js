@@ -1,13 +1,20 @@
-import React, {Component} from 'react'
+import React from 'react'
+import NewUser from './NewUser'
+import ReturningUser from './ReturningUser'
 
-class LogIn extends Component {
-  render() {
-    return (
-      <div></div>
-    )
-  }
+const LogIn = props => {
+
+  return (
+    <div>
+      <NewUser
+        handleSubmit={props.handleSubmit}
+      />
+      <ReturningUser
+        users={props.users}
+      />
+    </div>
+  )
 
 }
-
 
 export default LogIn
