@@ -3,6 +3,7 @@ import Nav from './Nav'
 import UserProfile from './UserProfile'
 import ComicsContainer from './ComicsContainer'
 import Logout from './Logout'
+import ComicList from './ComicList'
 
 class UserContainer extends Component {
         state = {
@@ -10,6 +11,8 @@ class UserContainer extends Component {
           books: [],
           comics: [],
           likes: [],
+          selectedCharacterId: null,
+          myComics: []
         }
 
   componentDidMount() {
@@ -31,7 +34,21 @@ class UserContainer extends Component {
   }
 
   getSelectedCharacter = (event) => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
+    this.setState({
+      selectedCharacterId: event.target.value
+    }/*, () => console.log(this.state.selectedCharacterId)*/)
+  }
+
+  pickedComic = (myComic) => {
+    // console.log('clicked')
+    // console.log('In pickedComic: ', comic.id)
+    const isIncluded = this.state.myComics.find(comic => comic.id === parseInt(myComic.id))
+    if (!isIncluded) {
+      this.setState({
+        myComics: [...this.state.myComics, myComic]
+      }, () => console.log(this.state.myComics))
+    }
   }
 
   render() {
@@ -51,7 +68,16 @@ class UserContainer extends Component {
         <Logout
           logoutUser={this.props.logoutUser}
         />
-        <ComicsContainer />
+        <ComicsContainer
+          books={this.state.books}
+          comics={this.state.comics}
+          pickedComic={this.pickedComic}
+          selectedCharacterId={this.state.selectedCharacterId}
+        />
+        <ComicList
+          comics={this.state.myComics}
+          pickedComic={this.pickedComic}
+        />
       </div>
     )
   }

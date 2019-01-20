@@ -1,10 +1,18 @@
 import React, {Component} from 'react'
-import ComicList from './ComicList'
+import BookList from './BookList'
 
 class ComicsContainer extends Component {
+
   render() {
+    const filteredBooks = this.props.books.filter(book => book.character_id === parseInt(this.props.selectedCharacterId))
+    // console.log('In ComicsContainer: ', this.props)
+    // console.log('In ComicsContainer: ', filteredBooks)
     return (
-      <ComicList />
+      <BookList
+        filteredBooks={filteredBooks}
+        comics={this.props.comics}
+        pickedComic={this.props.pickedComic}
+      />
     )
   }
 
