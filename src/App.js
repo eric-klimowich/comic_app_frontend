@@ -59,18 +59,25 @@ class App extends Component {
     }
   }
 
-  chooseReturningUser = (event) => {
-    // console.log('changed')
-    // console.log(event.target.value)
-    const userId = event.target.value
-    console.log(userId)
-    console.log(this.state.users)
-    const chosenUser = this.state.users.find(user => user.id === parseInt(userId))
-    // console.log(chosenUser)
+  logoutUser = () => {
+    // console.log('clicked')
     this.setState({
-      currentUser: chosenUser
-    }, () => console.log(this.state.currentUser))
+      currentUser: null
+    })
   }
+
+  // chooseReturningUser = (event) => {
+  //   console.log('changed')
+  //   console.log(event.target.value)
+  //   const userId = event.target.value
+  //   console.log(userId)
+  //   console.log(this.state.users)
+  //   const chosenUser = this.state.users.find(user => user.id === parseInt(userId))
+  //   // console.log(chosenUser)
+  //   this.setState({
+  //     currentUser: chosenUser
+  //   }, () => console.log(this.state.currentUser))
+  // }
 
   renderWelcomePage = () => {
     if (this.state.currentUser) {
@@ -78,6 +85,7 @@ class App extends Component {
         <UserContainer
           users={this.state.users}
           currentUser={this.state.currentUser}
+          logoutUser={this.logoutUser}
         />
       )
     } else {
@@ -93,7 +101,7 @@ class App extends Component {
   }
 
   render() {
-    console.log('In App: ', this.state)
+    // console.log('In App: ', this.state)
     return (
       this.renderWelcomePage()
     );

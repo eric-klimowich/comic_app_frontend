@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Nav from './Nav'
 import UserProfile from './UserProfile'
 import ComicsContainer from './ComicsContainer'
+import Logout from './Logout'
 
 class UserContainer extends Component {
         state = {
@@ -39,11 +40,17 @@ class UserContainer extends Component {
     // console.log('Props in UserContainer: ', this.props.currentUser)
     return (
       <div>
+        <UserProfile
+          currentUser={this.props.currentUser}
+          logoutUser={this.props.logoutUser}
+        />
         <Nav
           characters={this.state.characters}
           getSelectedCharacter={this.getSelectedCharacter}
         />
-        <UserProfile currentUser={this.props.currentUser} />
+        <Logout
+          logoutUser={this.props.logoutUser}
+        />
         <ComicsContainer />
       </div>
     )
