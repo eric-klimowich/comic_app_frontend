@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 class NewUser extends Component {
 
   state = {
+    username: '',
+    password: '',
     firstName: '',
     lastName: '',
     favChar: '',
@@ -19,6 +21,20 @@ class NewUser extends Component {
   render() {
     return (
       <form onSubmit={(event) => this.props.submitNewUser(event, this.state)} >
+        <input
+          type="text"
+          name="username"
+          value={this.state.username}
+          placeholder="Username..."
+          onChange={this.handleChange}
+        />
+        <input
+          type="text"
+          name="password"
+          value={this.state.password}
+          placeholder="Password..."
+          onChange={this.handleChange}
+        />
         <input
           type="text"
           name="firstName"

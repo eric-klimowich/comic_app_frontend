@@ -19,6 +19,8 @@ class App extends Component {
   submitNewUser = (event, newUser) => {
     event.preventDefault()
     // console.log(newUser)
+    // console.log(newUser.username)
+    // console.log(newUser.password)
     fetch('http://localhost:3000/api/v1/users', {
       method: 'POST',
       headers: {
@@ -26,6 +28,8 @@ class App extends Component {
         Accetp: 'application/json'
       },
       body: JSON.stringify({
+        username: newUser.username,
+        password: newUser.password,
         first_name: newUser.firstName,
         last_name: newUser.lastName,
         fav_char: newUser.favChar,
@@ -40,6 +44,19 @@ class App extends Component {
           currentUser: addedUser
         }/*, () => console.log(this.state.users)*/)
       })
+  }
+
+  submitReturningUser = (event, loginInput) => {
+    event.preventDefault()
+    // console.log(loginInput)
+    const userExists = this.state.users.find(user => user.username === loginInput.username)
+    if (userExists) {
+      if (loginInput.password === userExists.password) {
+        this.setState({
+          currentUser: userExists
+        })
+      }
+    }
   }
 
   chooseReturningUser = (event) => {
@@ -69,13 +86,14 @@ class App extends Component {
           users={this.state.users}
           submitNewUser={this.submitNewUser}
           chooseReturningUser={this.chooseReturningUser}
+          submitReturningUser={this.submitReturningUser}
         />
       )
     }
   }
 
   render() {
-    // console.log('In App: ', this.state)
+    console.log('In App: ', this.state)
     return (
       this.renderWelcomePage()
     );
