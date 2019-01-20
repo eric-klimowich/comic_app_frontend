@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
 import UserContainer from './UserContainer'
-import LogIn from './LogIn'
+// import LogIn from './LogIn'
 
 class App extends Component {
 
   state = {
     users: [],
-    // characters: [],
-    // books: [],
-    // comics: [],
-    // likes: [],
+    
   }
 
   componentDidMount() {
@@ -18,22 +15,21 @@ class App extends Component {
       .then(r => r.json())
       .then(users => this.setState({users}))
 
-    // fetch('http://localhost:3000/api/v1/characters')
-    //   .then(r => r.json())
-    //   .then(characters => this.setState({characters}))
-    //
-    // fetch('http://localhost:3000/api/v1/books')
-    //   .then(r => r.json())
-    //   .then(books => this.setState({books}))
-    //
-    // fetch('http://localhost:3000/api/v1/comics')
-    //   .then(r => r.json())
-    //   .then(comics => this.setState({comics}))
-    //
-    // fetch('http://localhost:3000/api/v1/likes')
-    //   .then(r => r.json())
-    //   .then(likes => this.setState({likes}))
-
+  //   fetch('http://localhost:3000/api/v1/characters')
+  //     .then(r => r.json())
+  //     .then(characters => this.setState({characters}))
+    
+  //   fetch('http://localhost:3000/api/v1/books')
+  //     .then(r => r.json())
+  //     .then(books => this.setState({books}))
+    
+  //   fetch('http://localhost:3000/api/v1/comics')
+  //     .then(r => r.json())
+  //     .then(comics => this.setState({comics}))
+    
+  //   fetch('http://localhost:3000/api/v1/likes')
+  //     .then(r => r.json())
+  //     .then(likes => this.setState({likes}))
   }
 
   render() {
@@ -41,7 +37,6 @@ class App extends Component {
     return (
       <div>
       <UserContainer users={this.state.users} />
-      <LogIn />
       </div>
     );
   }
