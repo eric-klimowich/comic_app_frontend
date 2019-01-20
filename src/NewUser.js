@@ -18,7 +18,7 @@ class NewUser extends Component {
 
   render() {
     return (
-      <form onSubmit={(event) => this.props.handleSubmit(event, this.state)} >
+      <form onSubmit={(event) => this.props.submitNewUser(event, this.state)} >
         <input
           type="text"
           name="firstName"

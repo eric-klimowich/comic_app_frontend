@@ -7,10 +7,11 @@ const LogIn = props => {
   return (
     <div>
       <NewUser
-        handleSubmit={props.handleSubmit}
+        submitNewUser={props.submitNewUser}
       />
       <ReturningUser
         users={props.users}
+        chooseReturningUser={props.chooseReturningUser}
       />
     </div>
   )

@@ -36,13 +36,14 @@ class UserContainer extends Component {
   render() {
     // console.log('State in UserContainer: ', this.state)
     // console.log('Props in UserContainer: ', this.props)
+    // console.log('Props in UserContainer: ', this.props.currentUser)
     return (
       <div>
         <Nav
           characters={this.state.characters}
           getSelectedCharacter={this.getSelectedCharacter}
         />
-        <UserProfile />
+        <UserProfile currentUser={this.props.currentUser} />
         <ComicsContainer />
       </div>
     )
