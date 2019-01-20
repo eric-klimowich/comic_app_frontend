@@ -55,20 +55,29 @@ class App extends Component {
     }, () => console.log(this.state.currentUser))
   }
 
-  render() {
-    // console.log('In App: ', this.state)
-    return (
-      <div>
+  renderWelcomePage = () => {
+    if (this.state.currentUser) {
+      return (
         <UserContainer
           users={this.state.users}
           currentUser={this.state.currentUser}
         />
+      )
+    } else {
+      return (
         <LogIn
           users={this.state.users}
           submitNewUser={this.submitNewUser}
           chooseReturningUser={this.chooseReturningUser}
         />
-      </div>
+      )
+    }
+  }
+
+  render() {
+    // console.log('In App: ', this.state)
+    return (
+      this.renderWelcomePage()
     );
   }
 
