@@ -23,21 +23,36 @@ class ReturningUser extends Component {
     // console.log('In ReturningUser: ', props)
     return (
       <form onSubmit={(event) => this.props.submitReturningUser(event, this.state)}>
+        <div className="ui labeled input">
+          <div className="ui green label">
+            Username:
+          </div>
+          <input
+            type="text"
+            name="username"
+            value={this.state.username}
+            placeholder="Enter username..."
+            onChange={this.handleChange}
+          />
+        </div>
+        <br />
+        <br />
+        <div className="ui labeled input">
+          <div className="ui green label">
+            Username:
+          </div>
+          <input
+            type="password"
+            name="password"
+            value={this.state.password}
+            placeholder="Enter password..."
+            onChange={this.handleChange}
+          />
+        </div>
+        <br />
+        <br />
         <input
-          type="text"
-          name="username"
-          value={this.state.username}
-          placeholder="Enter username..."
-          onChange={this.handleChange}
-        />
-        <input
-          type="password"
-          name="password"
-          value={this.state.password}
-          placeholder="Enter password..."
-          onChange={this.handleChange}
-        />
-        <input
+          className="ui red button"
           type="submit"
         />
       </form>

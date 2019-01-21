@@ -6,7 +6,7 @@ const ComicList = props => {
 
   // console.log(filteredComics)
   return (
-    props.comics.map(comic => <Comic key={comic.id} {...comic} pickedComic={props.pickedComic} />)
+    props.comics.map(comic => <Comic key={comic.id} {...comic} changeComicsArray={props.changeComicsArray} changeButtonText={props.changeButtonText} />)
   )
 
 }

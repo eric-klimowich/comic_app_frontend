@@ -19,16 +19,17 @@ class BookList extends Component {
 
   render() {
     // console.log('BookList props: ', this.props)
-    console.log('BookList state: ', this.state)
+    // console.log('BookList state: ', this.state)
     return (
       <div>
-        <ul>
+        <ul className="books-list">
           {this.props.filteredBooks.map(book => <li key={book.id} value={book.id} onClick={this.clickedBook} >{book.title}</li>)}
         </ul>
         <ComicList
           clickedBookId={this.state.clickedBookId}
           comics={this.state.filteredBookComics}
-          pickedComic={this.props.pickedComic}
+          changeButtonText={this.props.changeButtonText}
+          changeComicsArray={this.props.changeComicsArray}
         />
       </div>
     )

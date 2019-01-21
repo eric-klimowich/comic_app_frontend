@@ -66,36 +66,31 @@ class App extends Component {
     })
   }
 
-  // chooseReturningUser = (event) => {
-  //   console.log('changed')
-  //   console.log(event.target.value)
-  //   const userId = event.target.value
-  //   console.log(userId)
-  //   console.log(this.state.users)
-  //   const chosenUser = this.state.users.find(user => user.id === parseInt(userId))
-  //   // console.log(chosenUser)
-  //   this.setState({
-  //     currentUser: chosenUser
-  //   }, () => console.log(this.state.currentUser))
-  // }
 
   renderWelcomePage = () => {
     if (this.state.currentUser) {
       return (
-        <UserContainer
-          users={this.state.users}
-          currentUser={this.state.currentUser}
-          logoutUser={this.logoutUser}
-        />
+        <div>
+          <h1>Project Title</h1>
+          <UserContainer
+            users={this.state.users}
+            currentUser={this.state.currentUser}
+            logoutUser={this.logoutUser}
+          />
+        </div>
       )
     } else {
       return (
-        <LogIn
-          users={this.state.users}
-          submitNewUser={this.submitNewUser}
-          chooseReturningUser={this.chooseReturningUser}
-          submitReturningUser={this.submitReturningUser}
-        />
+        <div>
+          <h1>Welcome Page</h1>
+          <LogIn
+            users={this.state.users}
+            submitNewUser={this.submitNewUser}
+            chooseReturningUser={this.chooseReturningUser}
+            submitReturningUser={this.submitReturningUser}
+          />
+        </div>
+
       )
     }
   }
@@ -110,3 +105,16 @@ class App extends Component {
 }
 
 export default App;
+
+// chooseReturningUser = (event) => {
+  //   console.log('changed')
+  //   console.log(event.target.value)
+  //   const userId = event.target.value
+  //   console.log(userId)
+  //   console.log(this.state.users)
+  //   const chosenUser = this.state.users.find(user => user.id === parseInt(userId))
+  //   // console.log(chosenUser)
+  //   this.setState({
+    //     currentUser: chosenUser
+    //   }, () => console.log(this.state.currentUser))
+    // }

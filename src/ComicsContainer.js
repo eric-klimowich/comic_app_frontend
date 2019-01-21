@@ -11,7 +11,8 @@ class ComicsContainer extends Component {
       <BookList
         filteredBooks={filteredBooks}
         comics={this.props.comics}
-        pickedComic={this.props.pickedComic}
+        changeButtonText={this.props.changeButtonText}
+        changeComicsArray={this.props.changeComicsArray}
       />
     )
   }

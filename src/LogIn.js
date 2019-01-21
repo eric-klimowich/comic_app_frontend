@@ -39,6 +39,7 @@ class LogIn extends Component {
     return (
       <div>
         <button
+          className="ui blue button"
           name="signup"
           value="signup"
           onClick={this.handleClick}
@@ -46,12 +47,17 @@ class LogIn extends Component {
           Sign Up
         </button>
         <button
+          className="ui green button"
           name="login"
           value="login"
           onClick={this.handleClick}
         >
           Log In
         </button>
+        <br />
+        <br />
+        <br />
+        <br />
         {this.renderLoginComponent(this.state.loginChoice)}
       </div>
     )

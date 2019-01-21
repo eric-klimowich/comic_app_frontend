@@ -8,10 +8,38 @@ function fullName(firstName, lastName) {
 function renderUserProfile(props) {
   if (props.currentUser) {
     return (
-      <div>
-        <h1>{fullName(props.currentUser.first_name, props.currentUser.last_name)}</h1>
-        <p>My Hero: {props.currentUser.fav_char}</p>
-        <p>My Team: {props.currentUser.fav_team}</p>
+      <div className="ui card">
+        <div className="image">
+          <img src="" alt="user's selected profile"/>
+        </div>
+        <div className="content">
+          <p className="header">
+            {fullName(props.currentUser.first_name, props.currentUser.last_name)}
+          </p>
+          <div className="meta">
+            <span className="date">Joined in 2013</span>
+          </div>
+          <div className="description">
+            <p>
+              <strong>
+                My Hero:
+              </strong>
+              {props.currentUser.fav_char}
+            </p>
+            <p>
+              <strong>
+                My Team:
+              </strong>
+              {props.currentUser.fav_team}
+            </p>
+          </div>
+        </div>
+        <div className="extra content">
+          <p>
+            <i className="book icon"></i>
+              Number of comics reading
+          </p>
+        </div>
       </div>
     )
   }

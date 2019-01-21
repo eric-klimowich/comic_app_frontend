@@ -12,25 +12,27 @@ class UserContainer extends Component {
           comics: [],
           likes: [],
           selectedCharacterId: null,
-          myComics: []
+          myComics: [],
+          addComics: "Add to My Comics",
+          removeComics: "Remove from My Comics"
         }
 
   componentDidMount() {
     fetch('http://localhost:3000/api/v1/characters')
       .then(r => r.json())
-      .then(characters => this.setState({characters}))
+      .then(characters => this.setState({ characters }))
 
     fetch('http://localhost:3000/api/v1/books')
       .then(r => r.json())
-      .then(books => this.setState({books}))
+      .then(books => this.setState({ books }))
 
     fetch('http://localhost:3000/api/v1/comics')
       .then(r => r.json())
-      .then(comics => this.setState({comics}))
+      .then(comics => this.setState({ comics }))
 
     fetch('http://localhost:3000/api/v1/likes')
       .then(r => r.json())
-      .then(likes => this.setState({likes}))
+      .then(likes => this.setState({ likes }))
   }
 
   getSelectedCharacter = (event) => {
@@ -40,21 +42,34 @@ class UserContainer extends Component {
     }/*, () => console.log(this.state.selectedCharacterId)*/)
   }
 
-  pickedComic = (myComic) => {
+  addToMyComics = (id) => {
     // console.log('clicked')
     // console.log('In pickedComic: ', comic.id)
-    const isIncluded = this.state.myComics.find(comic => comic.id === parseInt(myComic.id))
+    const comicToAdd = this.state.comics.find(comic => comic.id === id)
+    const isIncluded = this.state.myComics.find(comic => comic.id === id)
     if (!isIncluded) {
       this.setState({
-        myComics: [...this.state.myComics, myComic]
-      }, () => console.log(this.state.myComics))
+        myComics: [...this.state.myComics, comicToAdd]
+      }/*, () => console.log(this.state.myComics)*/)
     }
+  }
+
+
+  removeFromMyComics = (id) => {
+    // console.log('clicked')
+    // console.log(id)
+    const myComicsCopy = [...this.state.myComics]
+    const updatedMyComics = myComicsCopy.filter(comic => comic.id !== id)
+    this.setState({
+      myComics: updatedMyComics
+    })
   }
 
   render() {
     // console.log('State in UserContainer: ', this.state)
     // console.log('Props in UserContainer: ', this.props)
     // console.log('Props in UserContainer: ', this.props.currentUser)
+    // console.log('State in UserContainer: ', this.state.myComics)
     return (
       <div>
         <UserProfile
@@ -71,12 +86,14 @@ class UserContainer extends Component {
         <ComicsContainer
           books={this.state.books}
           comics={this.state.comics}
-          pickedComic={this.pickedComic}
+          changeButtonText={this.state.addComics}
+          changeComicsArray={this.addToMyComics}
           selectedCharacterId={this.state.selectedCharacterId}
         />
         <ComicList
           comics={this.state.myComics}
-          pickedComic={this.pickedComic}
+          changeButtonText={this.state.removeComics}
+          changeComicsArray={this.removeFromMyComics}
         />
       </div>
     )
@@ -85,3 +102,24 @@ class UserContainer extends Component {
 }
 
 export default UserContainer
+
+// filterMyComics = () => {
+  //   const myFilteredComics = this.state.comics.filter(comic => comic.clicked === true)
+  //   // console.log(myFilteredComics)
+  //   this.setState({
+    //     myComics: myFilteredComics
+    //   })
+    // }
+
+    // addToMyComics = (id) => {
+      //   // console.log('clicked')
+      //   // console.log(id)
+      //   const comicsCopy = [...this.state.comics]
+      //   const clickedComic = comicsCopy.find(comic => comic.id === id)
+      //   // console.log(clickedComic)
+      //   clickedComic.clicked = true
+      //   // console.log(clickedComic)
+      //   this.setState({
+        //     comics: comicsCopy
+        //   }, this.filterMyComics())
+        // }
