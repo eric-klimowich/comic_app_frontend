@@ -35,10 +35,10 @@ class UserContainer extends Component {
       .then(likes => this.setState({ likes }))
   }
 
-  getSelectedCharacter = (event) => {
-    // console.log(event.target.value)
+  getSelectedCharacter = (id) => {
+    // console.log(id)
     this.setState({
-      selectedCharacterId: event.target.value
+      selectedCharacterId: id
     }/*, () => console.log(this.state.selectedCharacterId)*/)
   }
 
@@ -76,12 +76,12 @@ class UserContainer extends Component {
           currentUser={this.props.currentUser}
           logoutUser={this.props.logoutUser}
         />
+        <Logout
+        logoutUser={this.props.logoutUser}
+        />
         <Nav
           characters={this.state.characters}
           getSelectedCharacter={this.getSelectedCharacter}
-        />
-        <Logout
-          logoutUser={this.props.logoutUser}
         />
         <ComicsContainer
           books={this.state.books}

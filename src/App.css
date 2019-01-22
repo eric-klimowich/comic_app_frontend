@@ -9,3 +9,12 @@ h1 {
 .books-list {
   color: white;
 }
+
+.white-text {
+  color: white;
+}
+
+.book-covers {
+  height: 250px;
+  width: 175px;
+}

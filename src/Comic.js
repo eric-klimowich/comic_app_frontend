@@ -14,7 +14,7 @@ const Comic = props => {
                 <div className="event">
                   <div className="content">
                     <div className="summary">
-                      <p>Elliot Fu</p> added <p>Jenny Hess</p> to the project
+                      
                     </div>
                   </div>
                 </div>

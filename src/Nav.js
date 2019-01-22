@@ -1,13 +1,22 @@
 import React from 'react'
 
 const Nav = props => {
+  // console.log('In Nav: ', props)
   return (
-    <form>
-      <select onChange={props.getSelectedCharacter}>
-        <option>Characters:</option>
-        {props.characters.map(character => <option key={character.id} value={character.id} >{character.name}</option>)}
-      </select>
-    </form>
+    <div className="ui grid">
+      {props.characters.map(character => {
+        return (
+          <div key={character.id} onClick={() => props.getSelectedCharacter(character.id)} className="four wide column">
+              <div className="white-text">
+                <img className="ui medium circular image" src={character.img_url} alt={character.name}/>
+                <br />
+                <h4>{character.name}</h4>
+              </div>
+          </div>
+        )
+      })}
+    </div>
+
   )
 }
 
