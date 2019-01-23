@@ -107,6 +107,8 @@ class UserContainer extends Component {
         <Logout
         logoutUser={this.props.logoutUser}
         />
+        <br />
+        <br />
         <ComicList
         comics={this.state.myComics}
         changeButtonText={this.state.removeComics}

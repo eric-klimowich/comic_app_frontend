@@ -83,13 +83,14 @@ class App extends Component {
     } else {
       return (
         <div>
+          <img className="main-image" src="https://vignette.wikia.nocookie.net/marveldatabase/images/e/e1/The_Marvel_Universe.png/revision/latest?cb=20110513164401" />
+          <h1 className="welcome-heading">My Marvel Comics</h1>
           <LogIn
           users={this.state.users}
           submitNewUser={this.submitNewUser}
           chooseReturningUser={this.chooseReturningUser}
           submitReturningUser={this.submitReturningUser}
           />
-          <img className="main-image" src="https://vignette.wikia.nocookie.net/marveldatabase/images/e/e1/The_Marvel_Universe.png/revision/latest?cb=20110513164401" />
         </div>
 
       )

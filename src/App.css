@@ -19,13 +19,21 @@ h1 {
   width: 175px;
 }
 
-.main-image {
-  position: fixed;
-  top: 5%;
-}
-
 .login-buttons {
   position: relative;
   top: 10%;
   left: 40%;
+}
+
+.welcome-heading {
+  position: relative;
+  top: 10%;
+  left: 37%;
+}
+
+.main-image {
+  position: relative;
+  left: 10%;
+  height: 400;
+  width: 800px;
 }

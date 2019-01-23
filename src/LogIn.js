@@ -57,7 +57,6 @@ class LogIn extends Component {
         <br />
         <br />
         <br />
-        <br />
         {this.renderLoginComponent(this.state.loginChoice)}
       </div>
     )
