@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import UserContainer from './UserContainer'
 import LogIn from './LogIn'
+import {Route, Redirect} from 'react-router-dom'
 
 class App extends Component {
 
@@ -69,32 +70,70 @@ class App extends Component {
 
 
   renderWelcomePage = () => {
-    if (this.state.currentUser) {
-      return (
-        <div>
-          <h1>Project Title</h1>
-          <UserContainer
-            users={this.state.users}
-            currentUser={this.state.currentUser}
-            logoutUser={this.logoutUser}
-          />
-        </div>
-      )
-    } else {
-      return (
-        <div>
-          <img className="main-image" src="https://vignette.wikia.nocookie.net/marveldatabase/images/e/e1/The_Marvel_Universe.png/revision/latest?cb=20110513164401" />
-          <h1 className="welcome-heading">My Marvel Comics</h1>
-          <LogIn
-          users={this.state.users}
-          submitNewUser={this.submitNewUser}
-          chooseReturningUser={this.chooseReturningUser}
-          submitReturningUser={this.submitReturningUser}
-          />
-        </div>
+    return (<>
+        <Route path="/login" render={()=>{
+          if (!this.state.currentUser) {
+            return <div>
+              <img className="main-image" src="https://vignette.wikia.nocookie.net/marveldatabase/images/e/e1/The_Marvel_Universe.png/revision/latest?cb=20110513164401" />
+              <h1 className="welcome-heading">My Marvel Comics</h1>
+              <LogIn
+              users={this.state.users}
+              submitNewUser={this.submitNewUser}
+              chooseReturningUser={this.chooseReturningUser}
+              submitReturningUser={this.submitReturningUser}
+              />
+            </div>
+          } else {
+            return <Redirect to="/" />
+          }
+        }} />
 
-      )
-    }
+        <Route path="/" render={()=>{
+
+            if (this.state.currentUser) {
+              return <div>
+                <h1>Project Title</h1>
+                <UserContainer
+                  users={this.state.users}
+                  currentUser={this.state.currentUser}
+                  logoutUser={this.logoutUser}
+                />
+              </div>
+            } else {
+              return <Redirect to="/login" />
+            }
+
+        }} />
+      </>)
+
+
+
+    // if (this.state.currentUser) {
+    //   return (
+    //     <div>
+    //       <h1>Project Title</h1>
+    //       <UserContainer
+    //         users={this.state.users}
+    //         currentUser={this.state.currentUser}
+    //         logoutUser={this.logoutUser}
+    //       />
+    //     </div>
+    //   )
+    // } else {
+    //   return (
+    //     <div>
+    //       <img className="main-image" src="https://vignette.wikia.nocookie.net/marveldatabase/images/e/e1/The_Marvel_Universe.png/revision/latest?cb=20110513164401" />
+    //       <h1 className="welcome-heading">My Marvel Comics</h1>
+    //       <LogIn
+    //       users={this.state.users}
+    //       submitNewUser={this.submitNewUser}
+    //       chooseReturningUser={this.chooseReturningUser}
+    //       submitReturningUser={this.submitReturningUser}
+    //       />
+    //     </div>
+    //
+    //   )
+    // }
   }
 
   render() {
