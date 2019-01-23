@@ -32,6 +32,7 @@ class App extends Component {
         password: newUser.password,
         first_name: newUser.firstName,
         last_name: newUser.lastName,
+        img_url: newUser.imgUrl,
         fav_char: newUser.favChar,
         fav_team: newUser.favTeam
       })
@@ -82,13 +83,13 @@ class App extends Component {
     } else {
       return (
         <div>
-          <h1>Welcome Page</h1>
           <LogIn
-            users={this.state.users}
-            submitNewUser={this.submitNewUser}
-            chooseReturningUser={this.chooseReturningUser}
-            submitReturningUser={this.submitReturningUser}
+          users={this.state.users}
+          submitNewUser={this.submitNewUser}
+          chooseReturningUser={this.chooseReturningUser}
+          submitReturningUser={this.submitReturningUser}
           />
+          <img className="main-image" src="https://vignette.wikia.nocookie.net/marveldatabase/images/e/e1/The_Marvel_Universe.png/revision/latest?cb=20110513164401" />
         </div>
 
       )

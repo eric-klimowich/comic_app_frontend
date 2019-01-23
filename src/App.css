@@ -18,3 +18,14 @@ h1 {
   height: 250px;
   width: 175px;
 }
+
+.main-image {
+  position: fixed;
+  top: 5%;
+}
+
+.login-buttons {
+  position: relative;
+  top: 10%;
+  left: 40%;
+}

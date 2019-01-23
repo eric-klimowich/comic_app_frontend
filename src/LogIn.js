@@ -37,7 +37,7 @@ class LogIn extends Component {
   render() {
     // console.log('In Login: ', this.state.loginChoice)
     return (
-      <div>
+      <div className="login-buttons">
         <button
           className="ui blue button"
           name="signup"

@@ -39,7 +39,7 @@ class ReturningUser extends Component {
         <br />
         <div className="ui labeled input">
           <div className="ui green label">
-            Username:
+            Password:
           </div>
           <input
             type="password"

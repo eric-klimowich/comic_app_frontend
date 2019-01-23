@@ -10,7 +10,7 @@ function renderUserProfile(props) {
     return (
       <div className="ui card">
         <div className="image">
-          <img src="" alt="user's selected profile"/>
+          <img src={props.currentUser.img_url} alt="user's selected profile"/>
         </div>
         <div className="content">
           <p className="header">
@@ -37,7 +37,7 @@ function renderUserProfile(props) {
         <div className="extra content">
           <p>
             <i className="book icon"></i>
-              Number of comics reading
+              Number of comics reading: {props.myComics.length}
           </p>
         </div>
       </div>

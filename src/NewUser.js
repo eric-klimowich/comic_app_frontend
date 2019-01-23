@@ -7,6 +7,7 @@ class NewUser extends Component {
     password: '',
     firstName: '',
     lastName: '',
+    imgUrl: '',
     favChar: '',
     favTeam: ''
   }
@@ -72,6 +73,20 @@ class NewUser extends Component {
             name="lastName"
             value={this.state.lastName}
             placeholder="enter last name..."
+            onChange={this.handleChange}
+          />
+        </div>
+        <br />
+        <br />
+        <div className="ui labeled input">
+          <div className="ui blue label">
+            Image Url:
+          </div>
+          <input
+            type="text"
+            name="imgUrl"
+            value={this.state.imgUrl}
+            placeholder="enter image url..."
             onChange={this.handleChange}
           />
         </div>

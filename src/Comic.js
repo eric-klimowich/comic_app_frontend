@@ -14,7 +14,7 @@ const Comic = props => {
                 <div className="event">
                   <div className="content">
                     <div className="summary">
-                      
+
                     </div>
                   </div>
                 </div>

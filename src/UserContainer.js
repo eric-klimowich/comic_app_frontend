@@ -28,11 +28,22 @@ class UserContainer extends Component {
 
     fetch('http://localhost:3000/api/v1/comics')
       .then(r => r.json())
-      .then(comics => this.setState({ comics }))
+      .then(comics => this.setState({
+        comics
+      }, () => this.fetchMyComics()))
 
     fetch('http://localhost:3000/api/v1/likes')
       .then(r => r.json())
       .then(likes => this.setState({ likes }))
+
+  }
+
+  fetchMyComics = () => {
+    fetch('http://localhost:3000/api/v1/likes')
+      .then(r => r.json())
+      .then(likes => likes.filter(like => like.user_id === this.props.currentUser.id))
+      .then(myLikes => myLikes.map(like => this.state.comics.find(comic => comic.id === like.comic_id)))
+      .then(myComics => this.setState({ myComics }))
   }
 
   getSelectedCharacter = (id) => {
@@ -52,6 +63,17 @@ class UserContainer extends Component {
         myComics: [...this.state.myComics, comicToAdd]
       }/*, () => console.log(this.state.myComics)*/)
     }
+    fetch('http://localhost:3000/api/v1/likes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        user_id: this.props.currentUser.id,
+        comic_id: id
+      })
+    })
   }
 
 
@@ -62,6 +84,11 @@ class UserContainer extends Component {
     const updatedMyComics = myComicsCopy.filter(comic => comic.id !== id)
     this.setState({
       myComics: updatedMyComics
+    })
+    const likeId = (this.state.likes.find(like => like.comic_id === id)).id
+    // console.log(likeId)
+    fetch(`http://localhost:3000/api/v1/likes/${likeId}`, {
+      method: 'DELETE'
     })
   }
 
@@ -75,9 +102,15 @@ class UserContainer extends Component {
         <UserProfile
           currentUser={this.props.currentUser}
           logoutUser={this.props.logoutUser}
+          myComics={this.state.myComics}
         />
         <Logout
         logoutUser={this.props.logoutUser}
+        />
+        <ComicList
+        comics={this.state.myComics}
+        changeButtonText={this.state.removeComics}
+        changeComicsArray={this.removeFromMyComics}
         />
         <Nav
           characters={this.state.characters}
@@ -90,11 +123,6 @@ class UserContainer extends Component {
           changeComicsArray={this.addToMyComics}
           selectedCharacterId={this.state.selectedCharacterId}
         />
-        <ComicList
-          comics={this.state.myComics}
-          changeButtonText={this.state.removeComics}
-          changeComicsArray={this.removeFromMyComics}
-        />
       </div>
     )
   }
@@ -102,6 +130,10 @@ class UserContainer extends Component {
 }
 
 export default UserContainer
+
+
+
+
 
 // filterMyComics = () => {
   //   const myFilteredComics = this.state.comics.filter(comic => comic.clicked === true)
